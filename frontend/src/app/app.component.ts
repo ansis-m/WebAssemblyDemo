@@ -15,11 +15,13 @@ export class AppComponent implements OnInit{
   ngOnInit(): void {
     this.wasmService.wasmLoaded$.subscribe(loaded => {
       if (loaded) {
+        console.log(this.wasmService.exports);
         const result: number = this.wasmService.callWasmFunction();
         window.alert("result from component : " + result);
 
         for (let i = 0 ; i < 8 ; i++) {
           this.wasmService.callMainFunction();
+          this.wasmService.getString();
         }
       }
     })

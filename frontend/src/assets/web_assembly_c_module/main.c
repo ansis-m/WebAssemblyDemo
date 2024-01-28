@@ -1,18 +1,48 @@
 #include <emscripten/emscripten.h>
 #include <math.h>
+#include <stdlib.h>
+#include <stdio.h>
+#include <string.h>
+
 
 
 static int result = 0;
+static char* pointer;
+
+typedef struct {
+	int age;
+	char name[50];
+
+} Person;
 
 
-EMSCRIPTEN_KEEPALIVE
 int add (int a, int b) {
-	return a + b;
+
+	Person p = {1000, "name"};
+	return a + b + p.age;
 }
 
 
-EMSCRIPTEN_KEEPALIVE
 int main () {
 	result += add(3, 4);
 	return (int) pow(result, 2);
+}
+
+EMSCRIPTEN_KEEPALIVE
+char* getJSON() {
+    Person p;
+    p.age = 25;
+    strcpy(p.name, "John");
+
+    int requiredSize = snprintf(NULL, 0, "{\"id\": %d, \"name\": \"%s\"}", p.age, p.name) + 2;
+
+    char* json = (char*)malloc(requiredSize);
+    snprintf(json, requiredSize, "{\"age\": %d, \"name\": \"%s\"}", p.age, p.name);
+	pointer = json;
+    return json;
+}
+
+EMSCRIPTEN_KEEPALIVE
+void freeJSON() {
+	free(pointer);
 }
