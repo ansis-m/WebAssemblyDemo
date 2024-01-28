@@ -1,5 +1,5 @@
-#include <stdio.h>
 #include <emscripten/emscripten.h>
+#include <math.h>
 
 
 static int result = 0;
@@ -13,6 +13,6 @@ int add (int a, int b) {
 
 EMSCRIPTEN_KEEPALIVE
 int main () {
-	result += add(3, 4);Y
-	return result;
+	result += add(3, 4);
+	return (int) pow(result, 2);
 }

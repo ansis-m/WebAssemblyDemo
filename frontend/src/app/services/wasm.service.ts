@@ -32,4 +32,10 @@ export class WasmService {
     console.log('Result from WebAssembly:', result);
     return result;
   }
+
+  callMainFunction(): number {
+    const result = this.wasmModule.exports.main();
+    console.log('Main from WebAssembly:', result);
+    return result;
+  }
 }

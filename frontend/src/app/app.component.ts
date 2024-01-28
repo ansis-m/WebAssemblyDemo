@@ -17,6 +17,10 @@ export class AppComponent implements OnInit{
       if (loaded) {
         const result: number = this.wasmService.callWasmFunction();
         window.alert("result from component : " + result);
+
+        for (let i = 0 ; i < 8 ; i++) {
+          this.wasmService.callMainFunction();
+        }
       }
     })
     this.wasmService.loadWasm();
