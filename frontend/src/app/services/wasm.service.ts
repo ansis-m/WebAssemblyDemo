@@ -41,6 +41,9 @@ export class WasmService {
               return false;
             }
           },
+          emscripten_date_now: () => Date.now(),
+          emscripten_get_now: () => performance.now(),
+          _emscripten_get_now_is_monotonic: () => 1,
           memory: memory,
           table: new WebAssembly.Table({ initial: 0, element: 'anyfunc' }),
         }
@@ -68,9 +71,11 @@ export class WasmService {
   }
 
 
-  getString() {
+  getJSON() {
     const ptr = this.wasmModule.exports.getJSON();
     this.readWasmString(ptr);
+    let code = this.wasmModule.exports.freeJSON();
+    console.log("code: " + code);
   }
 
   readWasmString(ptr: number): void {
