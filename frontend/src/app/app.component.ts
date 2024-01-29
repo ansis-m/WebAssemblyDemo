@@ -10,8 +10,10 @@ import {Subscription, take} from "rxjs";
 export class AppComponent implements OnInit, OnDestroy{
   title = 'frontend';
   private wasmSubscription: Subscription | undefined;
+  private worker: Worker;
 
   constructor(private wasmService: WasmService) {
+    this.worker = new Worker(new URL('./web.worker', import.meta.url), { type: 'module' });
   }
 
   ngOnInit(): void {
