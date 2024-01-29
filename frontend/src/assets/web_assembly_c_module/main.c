@@ -20,13 +20,14 @@ typedef struct {
 int add (int a, int b) {
 
 	Person p = {1000, "name"};
+	sleep(2);
 	return a + b + p.age;
 }
 
 
 int main () {
 	result += add(3, 4);
-	sleep(7);
+	sleep(3);
 	return (int) pow(result, 2);
 }
 
@@ -41,13 +42,13 @@ char* getJSON() {
     char* json = (char*)malloc(requiredSize);
     snprintf(json, requiredSize, "{\"age\": %d, \"name\": \"%s\"}", p.age, p.name);
 	  pointer = json;
-	  sleep(7);
+	  sleep(1);
     return json;
 }
 
 EMSCRIPTEN_KEEPALIVE
 int freeJSON() {
 	free(pointer);
-	sleep(7);
+	sleep(1);
   return 69;
 }

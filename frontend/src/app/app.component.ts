@@ -37,4 +37,8 @@ export class AppComponent implements OnInit, OnDestroy{
 
   ngOnDestroy(): void {
   }
+
+  callWebWorker(message: string) {
+    this.workerService.post(message);
+  }
 }

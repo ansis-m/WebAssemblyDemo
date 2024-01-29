@@ -1,0 +1,38 @@
+.center-container{
+  display: flex;
+  align-content: center;
+  place-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100vw;
+}
+
+.button-grid{
+  display: grid;
+  grid-template-columns: repeat(3, 100px);
+  grid-template-rows: repeat(2, 30px);
+  gap: 10px;
+  place-items: center;
+
+  grid-template-areas:
+  "button1 button2 button3"
+  "button4 button5 button6";
+}
+
+
+#button1 {
+  grid-area: button1;
+}
+
+#button2 {
+  grid-area: button2;
+}
+
+#button3 {
+  grid-area: button3;
+}
+
+
+#button5 {
+  grid-area: button5;
+}

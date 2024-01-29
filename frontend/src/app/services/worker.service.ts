@@ -13,8 +13,17 @@ export class WorkerService {
     this.wasmWorker.onmessage = ({ data }) => {
       console.log('Message received from worker:', JSON.stringify(data));
     };
+  }
 
-    this.wasmWorker.postMessage("data");
+  public load(): void {
     this.wasmWorker.postMessage("load");
+  }
+
+  public add(): void {
+    this.wasmWorker.postMessage("add");
+  }
+
+  public post(message: string): void {
+    this.wasmWorker.postMessage(message);
   }
 }

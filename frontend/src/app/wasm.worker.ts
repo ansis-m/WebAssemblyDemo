@@ -59,11 +59,42 @@ addEventListener('message', ({data}) => {
     case 'load':
       loadWasm();
       break;
-    case 'wasm':
-      loadWasm();
+    case 'add':
+      // @ts-ignore
+      const result = wasmModule.exports.add(5, 3);
+      console.log('Result from web worker:', result);
+        postMessage(result);
+      break;
+    case 'main':
+      // @ts-ignore
+      const r = wasmModule.exports.main();
+      console.log('Main from web worker:', r);
+      postMessage(r);
+      break;
+    case 'getJSON':
+      // @ts-ignore
+      const json = readWasmString(wasmModule.exports.getJSON());
+      console.log('Main from web worker:', json);
+      postMessage(json);
+      // @ts-ignore
+      const free = wasmModule.exports.freeJSON();
+      postMessage("memory freed: " + free);
       break;
     default:
       const response = `worker response to ${data}`;
       postMessage(response);
   }
 });
+
+function readWasmString(ptr: number): string {
+  // @ts-ignore
+  const memoryBuffer = new Uint8Array(wasmModule.exports.memory.buffer);
+  let str = '';
+  let currentByte = memoryBuffer[ptr];
+  while (currentByte !== 0) {
+  str += String.fromCharCode(currentByte);
+  ptr++;
+  currentByte = memoryBuffer[ptr];
+}
+  return str;
+}
