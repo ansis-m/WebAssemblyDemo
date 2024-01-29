@@ -26,7 +26,7 @@ int add (int a, int b) {
 
 int main () {
 	result += add(3, 4);
-	sleep(7);
+//	sleep(7);
 	return (int) pow(result, 2);
 }
 
@@ -41,13 +41,13 @@ char* getJSON() {
     char* json = (char*)malloc(requiredSize);
     snprintf(json, requiredSize, "{\"age\": %d, \"name\": \"%s\"}", p.age, p.name);
 	  pointer = json;
-	  sleep(7);
+//	  sleep(7);
     return json;
 }
 
 EMSCRIPTEN_KEEPALIVE
 int freeJSON() {
 	free(pointer);
-	sleep(7);
+//	sleep(7);
   return 69;
 }

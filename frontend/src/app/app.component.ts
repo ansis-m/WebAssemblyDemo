@@ -1,6 +1,7 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {WasmService} from "./services/wasm.service";
 import {Subscription, take} from "rxjs";
+import {environment} from "../environments/environment";
 
 @Component({
   selector: 'app-root',
@@ -16,6 +17,7 @@ export class AppComponent implements OnInit, OnDestroy{
 
   ngOnInit(): void {
     this.subscribeToWasmLoaded();
+    console.log("environment production: " + environment.production);
     this.wasmService.loadWasm();
   }
 
