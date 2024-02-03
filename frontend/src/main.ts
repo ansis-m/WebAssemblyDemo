@@ -9,6 +9,9 @@ platformBrowserDynamic().bootstrapModule(AppModule)
       navigator.serviceWorker.register('/ngsw-worker.js')
         .then(registration => console.log('SW registered: ', registration))
         .catch(registrationError => console.log('SW registration failed: ', registrationError));
+      navigator.serviceWorker.register('/assets/custom-sw.js')
+        .then(reg => console.log('Custom Service Worker registered', reg))
+        .catch(err => console.error('Custom Service Worker registration failed', err));
     }
   })
   .catch(err => console.error(err));
