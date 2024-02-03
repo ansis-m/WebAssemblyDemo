@@ -19,6 +19,24 @@ export class AppComponent implements OnInit, OnDestroy{
     this.subscribeToWasmLoaded();
     console.log("environment production: " + environment.production);
     this.wasmService.loadWasm();
+
+
+  }
+
+  handleMessageFromSW(event: MessageEvent) {
+    window.alert('Message from Service Worker:' + event.data);
+  }
+
+  sendMessageToServiceWorker() {
+    if (navigator.serviceWorker && navigator.serviceWorker.controller) {
+      navigator.serviceWorker.addEventListener('message', this.handleMessageFromSW);
+      navigator.serviceWorker.controller.postMessage({
+        type: 'COMMAND_OR_MESSAGE_TYPE',
+        data: { message1: 'message1' }
+      });
+    } else {
+      console.error('Service Worker controller not available.');
+    }
   }
 
   private subscribeToWasmLoaded(): void {

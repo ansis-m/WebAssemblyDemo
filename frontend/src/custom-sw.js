@@ -15,4 +15,13 @@ self.addEventListener('push', event => {
 self.addEventListener('message', event => {
   console.log(JSON.stringify(event))
   console.log('Service Worker message.');
+  sendMessageToClients("back to you");
 });
+
+function sendMessageToClients(message) {
+  self.clients.matchAll().then(clients => {
+    clients.forEach(client => {
+      client.postMessage(message);
+    });
+  });
+}

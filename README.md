@@ -1,5 +1,7 @@
-# WebAssemblyDemo
+# Service worker demo
 
-C code and wasm file can be found in frontend/src/assets/web_assembly_c_module
 
-![Diagram Description](diagramSVG.svg)
+1) ng build --configuration=production
+2) http-server dist/frontend
+
+to receive/send messages need to refresh after initial load

@@ -13,8 +13,8 @@ import { ServiceWorkerModule } from '@angular/service-worker';
   imports: [
     BrowserModule,
     HttpClientModule,
-    environment.production ? ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }) : [],
-    environment.production ? ServiceWorkerModule.register('assets/custom-sw.js', { enabled: environment.production }) : []
+    // environment.production ? ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }) : [],
+    environment.production ? ServiceWorkerModule.register('custom-sw.js', { enabled: environment.production }) : []
   ],
   providers: [],
   bootstrap: [AppComponent]

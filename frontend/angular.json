@@ -25,7 +25,8 @@
               "src/assets",
               "src/assets/web_assembly_c_module",
               "src/assets/web_assembly_c_module/main.js",
-              "src/assets/web_assembly_c_module/main.wasm"
+              "src/assets/web_assembly_c_module/main.wasm",
+              "src/custom-sw.js"
             ],
             "styles": [
               "src/styles.css"
